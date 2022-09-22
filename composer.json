@@ -1,0 +1,41 @@
+{
+    "name": "sairahcaz/laravel-dynamic-model",
+    "description": "Dynamic Model for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zacharias Creutznacher",
+            "email": "zacharias.creutznacher@gmail.com",
+            "homepage": "https://www.zacharias-creutznacher.de/english/"
+        }
+    ],
+    "homepage": "https://github.com/sairahcaz/laravel-dynamic-model",
+    "keywords": ["laravel", "eloquent", "model", "dynamic model", "dynamic table", "dynamic schema"],
+    "require": {
+        "php": ">=7.4",
+        "laravel/framework": "^5.3|^6.0|^7.0|^8.0|^9.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sairahcaz\\LaravelDynamicModel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sairahcaz\\LaravelDynamicModel\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+              "DynamicModelServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
