@@ -47,6 +47,10 @@ Schema::create('foo', function (Blueprint $table) {
 });
 ```
 
+``` bash
+$ php artisan migrate
+```
+
 ### Lets use our Dynamic Model:
 
 
