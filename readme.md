@@ -9,18 +9,20 @@
 ## Introduction
 
 Laravel Dynamic Model provides you with a model which can handle multiple database tables.
-*Warning*: this is only a good approach if you really know what your doing and you have no other option!
+
+**Warning**: this is only a good approach if you really know what your doing and you have no other option!
 
 ## Installation
 
-Dependencies
+### Dependencies
+
 This package depends on Doctrine/DBAL, so make sure you have it or install it.
 
 ``` bash
 $ composer require doctrine/dbal
 ```
 
-Package
+### Package
 
 ``` bash
 $ composer require sairahcaz/laravel-dynamic-model
