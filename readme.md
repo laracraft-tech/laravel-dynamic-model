@@ -1,21 +1,113 @@
-# LaravelDynamicModel
+# Laravel Dynamic Model
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+<p align="left">
+<!--<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/dt/sairahcaz/laravel-dynamic-model" alt="Total Downloads"></a>-->
+<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/v/sairahcaz/laravel-dynamic-model" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/l/sairahcaz/laravel-dynamic-model" alt="License"></a>
+</p>
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+## Introduction
+
+Laravel Dynamic Model provides you with a model which can handle multiple database tables.
+*Warning*: this is only a good approach if you really know what your doing and you have no other option!
 
 ## Installation
 
-Via Composer
+Dependencies
+This package depends on Doctrine/DBAL, so make sure you have it or install it.
+
+``` bash
+$ composer require doctrine/dbal
+```
+
+Package
 
 ``` bash
 $ composer require sairahcaz/laravel-dynamic-model
+$ php artisan vendor:publish --provider="Sairahcaz\LaravelDynamicModel\DynamicModelServiceProvider" --tag="config"
 ```
 
+
 ## Usage
+
+### Lets create a dummy table:
+
+``` bash
+$ php artisan make:migration create_foo_table
+```
+
+``` php
+Schema::create('foo', function (Blueprint $table) {
+    $table->id();
+    $table->string('col1');
+    $table->integer('col2');
+    $table->timestamps();
+});
+```
+
+### Lets use our Dynamic Model:
+
+
+``` php
+$foo = App::make(DynamicModel::class, ['table_name' => 'foo']);
+
+$foo->create([
+    'col1' => 'asdf',
+    'col2' => 123
+]);
+
+dd($foo->first());
+```
+
+Which gives us:
+
+```
+^ Sairahcaz\LaravelDynamicModel\DynamicModel {#328 ▼
+  #connection: "mysql"
+  #table: "foo"
+  #primaryKey: "id"
+  #keyType: "integer"
+  +incrementing: true
+  #with: []
+  #withCount: []
+  +preventsLazyLoading: false
+  #perPage: 15
+  +exists: true
+  +wasRecentlyCreated: false
+  #escapeWhenCastingToString: false
+  #attributes: array:5 [▼
+    "id" => 1
+    "col1" => "asdf"
+    "col2" => 123
+    "created_at" => "2022-09-22 15:34:22"
+    "updated_at" => "2022-09-22 15:34:22"
+  ]
+  #original: array:5 [▼
+    "id" => 1
+    "col1" => "asdf"
+    "col2" => 123
+    "created_at" => "2022-09-22 15:34:22"
+    "updated_at" => "2022-09-22 15:34:22"
+  ]
+  #changes: []
+  #casts: []
+  #classCastCache: []
+  #attributeCastCache: []
+  #dates: []
+  #dateFormat: null
+  #appends: []
+  #dispatchesEvents: []
+  #observables: []
+  #relations: []
+  #touches: []
+  +timestamps: true
+  #hidden: []
+  #visible: []
+  #fillable: []
+  #guarded: []
+  #routeKeyName: "id"
+}
+```
 
 ## Change log
 
