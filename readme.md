@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Laravel Dynamic Model provides you with a model which can handle multiple database tables.
+Laravel Dynamic Model provides you with an eloquent model which can handle multiple database tables.
 
 **Warning**: this is only a good approach if you really know what you're doing and you have no other option!
 
