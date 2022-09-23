@@ -10,7 +10,8 @@
 
 Normally, each model in Laravel is written for only one table, and it's not so easy to break this convention. This is for a good reason - it ensures a well designed and clean model. But in very specific cases, you may need to handle multiple tables via a single model. Here **Laravel Dynamic Model** comes into play! It provides you with an eloquent model which finally can handle multiple database tables!
 
-**Warning**: this is only a good approach if you really know what you're doing and you have no other option!
+
+**Warning**: this is only a good approach if you really know what you're doing and you have no other option! But in case you really dynamically need to create and handle multiple tables, this package might be a good choince for you!
 
 ## Installation
 
