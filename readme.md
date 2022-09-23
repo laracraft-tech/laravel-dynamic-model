@@ -1,9 +1,9 @@
 # Laravel Dynamic Model
 
 <p align="left">
-<!--<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/dt/sairahcaz/laravel-dynamic-model" alt="Total Downloads"></a>-->
-<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/v/sairahcaz/laravel-dynamic-model" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/sairahcaz/laravel-dynamic-model"><img src="https://img.shields.io/packagist/l/sairahcaz/laravel-dynamic-model" alt="License"></a>
+<!--<a href="https://packagist.org/packages/laracraft-tech/laravel-dynamic-model"><img src="https://img.shields.io/packagist/dt/laracraft-tech/laravel-dynamic-model" alt="Total Downloads"></a>-->
+<a href="https://packagist.org/packages/laracraft-tech/laravel-dynamic-model"><img src="https://img.shields.io/packagist/v/laracraft-tech/laravel-dynamic-model" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laracraft-tech/laravel-dynamic-model"><img src="https://img.shields.io/packagist/l/laracraft-tech/laravel-dynamic-model" alt="License"></a>
 </p>
 
 ## Introduction
@@ -26,8 +26,8 @@ $ composer require doctrine/dbal
 ### Package
 
 ``` bash
-$ composer require sairahcaz/laravel-dynamic-model
-$ php artisan vendor:publish --provider="Sairahcaz\LaravelDynamicModel\DynamicModelServiceProvider" --tag="config"
+$ composer require laracraft-tech/laravel-dynamic-model
+$ php artisan vendor:publish --provider="LaracraftTech\LaravelDynamicModel\DynamicModelServiceProvider" --tag="config"
 ```
 
 
@@ -85,7 +85,7 @@ dd($foo->first());
 Which gives us:
 
 ```
-^ Sairahcaz\LaravelDynamicModel\DynamicModel {#328 ▼
+^ LaracraftTech\LaravelDynamicModel\DynamicModel {#328 ▼
   #connection: "mysql"
   #table: "foo"
   #primaryKey: "id"
@@ -159,14 +159,14 @@ If you discover any security related issues, please email zacharias.creutznacher
 
 MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/sairahcaz/laravel-dynamic-model.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/sairahcaz/laravel-dynamic-model.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/sairahcaz/laravel-dynamic-model/master.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/laracraft-tech/laravel-dynamic-model.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/laracraft-tech/laravel-dynamic-model.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/laracraft-tech/laravel-dynamic-model/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/12345678/shield
 
-[link-packagist]: https://packagist.org/packages/sairahcaz/laravel-dynamic-model
-[link-downloads]: https://packagist.org/packages/sairahcaz/laravel-dynamic-model
-[link-travis]: https://travis-ci.org/sairahcaz/laravel-dynamic-model
+[link-packagist]: https://packagist.org/packages/laracraft-tech/laravel-dynamic-model
+[link-downloads]: https://packagist.org/packages/laracraft-tech/laravel-dynamic-model
+[link-travis]: https://travis-ci.org/laracraft-tech/laravel-dynamic-model
 [link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/sairahcaz
+[link-author]: https://github.com/laracraft-tech
 [link-contributors]: ../../contributors
