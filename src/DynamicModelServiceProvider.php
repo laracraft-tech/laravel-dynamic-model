@@ -1,6 +1,6 @@
 <?php
 
-namespace Sairahcaz\LaravelDynamicModel;
+namespace LaracraftTech\LaravelDynamicModel;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,8 +13,8 @@ class DynamicModelServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'sairahcaz');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'sairahcaz');
+        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laracraft-tech');
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laracraft-tech');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
@@ -69,17 +69,17 @@ class DynamicModelServiceProvider extends ServiceProvider
 
         // Publishing the views.
         /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/sairahcaz'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/laracraft-tech'),
         ], 'laravel-dynamic-model.views');*/
 
         // Publishing assets.
         /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/sairahcaz'),
+            __DIR__.'/../resources/assets' => public_path('vendor/laracraft-tech'),
         ], 'laravel-dynamic-model.views');*/
 
         // Publishing the translation files.
         /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/sairahcaz'),
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/laracraft-tech'),
         ], 'laravel-dynamic-model.views');*/
 
         // Registering package commands.
