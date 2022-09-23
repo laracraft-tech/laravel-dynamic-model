@@ -1,6 +1,6 @@
 <?php
 
-namespace Sairahcaz\LaravelDynamicModel;
+namespace LaracraftTech\LaravelDynamicModel;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
