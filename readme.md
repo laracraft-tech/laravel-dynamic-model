@@ -33,19 +33,26 @@ $ php artisan vendor:publish --provider="Sairahcaz\LaravelDynamicModel\DynamicMo
 
 ## Usage
 
-### Lets create a dummy table:
+### Lets create some dummy tables:
 
 ``` bash
 $ php artisan make:migration create_foo_table
+$ php artisan make:migration create_faz_table
+$ php artisan make:migration create_bar_table
+$ php artisan make:migration create_baz_table
 ```
 
+Create migrations for all tables, for example:
+
 ``` php
+...
 Schema::create('foo', function (Blueprint $table) {
     $table->id();
     $table->string('col1');
     $table->integer('col2');
     $table->timestamps();
 });
+...
 ```
 
 ``` bash
@@ -62,6 +69,15 @@ $foo->create([
     'col1' => 'asdf',
     'col2' => 123
 ]);
+
+$faz = App::make(DynamicModel::class, ['table_name' => 'faz']);
+$faz->create([...]);
+
+$bar = App::make(DynamicModel::class, ['table_name' => 'bar']);
+$bar->create([...]);
+
+$baz = App::make(DynamicModel::class, ['table_name' => 'baz']);
+$baz->create([...]);
 
 dd($foo->first());
 ```
