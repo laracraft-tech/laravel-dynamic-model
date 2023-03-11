@@ -17,7 +17,7 @@ Normally, each model in Laravel is written for only one table, and it's not so e
 
 ### Dependencies
 
-This package depends on Doctrine/DBAL, so make sure you have it or install it.
+This package depends on Doctrine/DBAL, so make sure you have it installed.
 
 ``` bash
 $ composer require doctrine/dbal
