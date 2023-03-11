@@ -20,14 +20,14 @@ Normally, each model in Laravel is written for only one table, and it's not so e
 This package depends on Doctrine/DBAL, so make sure you have it installed.
 
 ``` bash
-$ composer require doctrine/dbal
+composer require doctrine/dbal
 ```
 
 ### Package
 
 ``` bash
-$ composer require laracraft-tech/laravel-dynamic-model
-$ php artisan vendor:publish --provider="LaracraftTech\LaravelDynamicModel\DynamicModelServiceProvider" --tag="config"
+composer require laracraft-tech/laravel-dynamic-model
+php artisan vendor:publish --provider="LaracraftTech\LaravelDynamicModel\DynamicModelServiceProvider" --tag="config"
 ```
 
 
@@ -36,10 +36,10 @@ $ php artisan vendor:publish --provider="LaracraftTech\LaravelDynamicModel\Dynam
 ### Lets create some dummy tables:
 
 ``` bash
-$ php artisan make:migration create_foo_table
-$ php artisan make:migration create_faz_table
-$ php artisan make:migration create_bar_table
-$ php artisan make:migration create_baz_table
+php artisan make:migration create_foo_table
+php artisan make:migration create_faz_table
+php artisan make:migration create_bar_table
+php artisan make:migration create_baz_table
 ```
 
 Create migrations for all tables, for example:
@@ -56,7 +56,7 @@ Schema::create('foo', function (Blueprint $table) {
 ```
 
 ``` bash
-$ php artisan migrate
+php artisan migrate
 ```
 
 ### Lets use our Dynamic Model:
@@ -139,7 +139,7 @@ Please see the [changelog](changelog.md) for more information on what has change
 ## Testing
 
 ``` bash
-$ composer test
+composer test
 ```
 
 ## Contributing
