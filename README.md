@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)
 [![Tests](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/run-tests.yml)
-[![Check & fix styling](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix-php-code-style-issues.yml/badge.svg?branch=main)](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix
+[![Check & fix styling](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix-php-code-style-issues.yml/badge.svg?branch=main)](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix-php-code-style-issues.yml)
 [![License](https://img.shields.io/packagist/l/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)
 <!--[![Total Downloads](https://img.shields.io/packagist/dt/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)-->
 
