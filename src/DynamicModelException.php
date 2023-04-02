@@ -8,7 +8,7 @@ final class DynamicModelException extends InvalidArgumentException
 {
     public static function tableDoesNotExist(string $tableName): static
     {
-        return new static("The table '$tableName' you provided to the dynamic model does not exists! Please create it first!");
+        return new self("The table '$tableName' you provided to the dynamic model does not exists! Please create it first!");
     }
 
     public static function primaryKeyDoesNotExist(): static

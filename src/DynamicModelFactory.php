@@ -16,7 +16,6 @@ class DynamicModelFactory
 
         // tell the IDE which type $dynamicModel should be...
         /** @var $dynamicModel Model&DynamicModelInterface */
-
         if (! method_exists($dynamicModel, 'bindDynamically')) {
             throw DynamicModelException::bindFuncDoesNotExist($concreteClassName);
         }
