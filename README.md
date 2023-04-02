@@ -31,7 +31,7 @@ composer require laracraft-tech/laravel-dynamic-model
 
 ## Usage
 
-### Let's create some dummy tables:
+### Let's create some dummy tables: 
 
 ``` bash
 php artisan make:migration create_foo_table
@@ -58,8 +58,11 @@ php artisan migrate
 ```
 
 ### Let's use the Dynamic Model:
+**Note**: You could also use a different database connection.
+Therefor just pass the `db_connection` as a second parameter.
 
-**Note** that the DynamicModel by default is set to **unguarded**.
+Also be aware that the default DynamicModel is set to **unguarded**.
+If you do not like this, check the section below and create your own dynamic model.
 
 ``` php
 use LaracraftTech\LaravelDynamicModel\DynamicModel;
@@ -79,6 +82,10 @@ $bar->create([...]);
 
 $baz = App::make(DynamicModel::class, ['table_name' => 'baz']);
 $baz->create([...]);
+
+// use another db connection (this one must be defined in your config/database.php file)
+$fooOtherDB = App::make(DynamicModel::class, ['table_name' => 'baz', 'db_connection' => 'your-db-connection-name-here']);
+$fooOtherDB->create([...]);
 
 dd($foo->first());
 ```
@@ -137,7 +144,8 @@ class MyDynamicModel extends SomeBaseModel implements DynamicModelInterface
     }
 }
 
-$foo = app(DynamicModelFactory::class)->create(MyDynamicModel::class, 'foo')
+$foo = app(DynamicModelFactory::class)
+        ->create(MyDynamicModel::class, 'foo', 'optional-other-db-connection-name')
 
 $foo->create([
     'col1' => 'asdf',
