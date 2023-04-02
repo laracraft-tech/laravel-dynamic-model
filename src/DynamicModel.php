@@ -2,9 +2,7 @@
 
 namespace LaracraftTech\LaravelDynamicModel;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Schema;
 
 class DynamicModel extends Model implements DynamicModelInterface
 {

@@ -8,6 +8,6 @@ class MyBaseModel extends Model
 {
     public function doSomethingBase()
     {
-        return "bar";
+        return 'bar';
     }
 }

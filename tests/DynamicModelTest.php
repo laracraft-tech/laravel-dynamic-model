@@ -29,7 +29,7 @@ it('can use different tables', function () {
 
     $foo->create([
         'col1' => 'asdf',
-        'col2' => 123
+        'col2' => 123,
     ]);
 
     expect($foo->find(1))
@@ -41,7 +41,7 @@ it('can use different tables', function () {
 
     $bar->create([
         'col1' => 'fdsa',
-        'col2' => 321
+        'col2' => 321,
     ]);
 
     expect($bar->find(1))
@@ -54,13 +54,13 @@ it('can use extended dynamic model', function () {
 
     $myDynamicModel->create([
         'col1' => 'asdf',
-        'col2' => 123
+        'col2' => 123,
     ]);
 
     expect($myDynamicModel->find(1))
         ->col1->toBe('asdf')
         ->col2->toBe(123)
-        ->doSomething()->toBe("foo");
+        ->doSomething()->toBe('foo');
 });
 
 it('can use traited dynamic model', function () {
@@ -68,11 +68,11 @@ it('can use traited dynamic model', function () {
 
     $myDynamicModel->create([
         'col1' => 'asdf',
-        'col2' => 123
+        'col2' => 123,
     ]);
 
     expect($myDynamicModel->find(1))
         ->col1->toBe('asdf')
         ->col2->toBe(123)
-        ->doSomethingBase()->toBe("bar");
+        ->doSomethingBase()->toBe('bar');
 });

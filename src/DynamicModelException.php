@@ -13,7 +13,7 @@ class DynamicModelException extends InvalidArgumentException
 
     public static function primaryKeyDoesNotExist(): static
     {
-        return new static("The table you provided to the dynamic model has no primary key set! Please create it first!");
+        return new static('The table you provided to the dynamic model has no primary key set! Please create it first!');
     }
 
     public static function bindFuncDoesNotExist(string $model): static

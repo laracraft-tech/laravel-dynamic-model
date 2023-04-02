@@ -2,19 +2,20 @@
 
 namespace LaracraftTech\LaravelDynamicModel;
 
-use Exception;
 use Illuminate\Support\Facades\Schema;
 
 trait DynamicModelBinding
 {
     public function bindDynamically(string $tableName, string $dbConnection = null): void
     {
-        if (!Schema::hasTable($tableName)) {
+        if (! Schema::hasTable($tableName)) {
             throw DynamicModelException::tableDoesNotExist($tableName);
         }
 
         // change connection, if desired
-        if ($dbConnection) $this->setConnection($dbConnection);
+        if ($dbConnection) {
+            $this->setConnection($dbConnection);
+        }
 
         // set the table for the dynamic model
         $this->setTable($tableName);
@@ -24,7 +25,7 @@ trait DynamicModelBinding
 
         $table = $connection->getDoctrineSchemaManager()->listTableDetails($tableName);
 
-        if (!$primaryKey = $table->getPrimaryKey()) {
+        if (! $primaryKey = $table->getPrimaryKey()) {
             throw DynamicModelException::primaryKeyDoesNotExist();
         }
 

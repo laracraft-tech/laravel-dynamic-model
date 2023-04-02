@@ -26,7 +26,7 @@ class LaravelDynamicModelServiceProvider extends PackageServiceProvider
         parent::register();
 
         $this->app->bind(DynamicModel::class, function ($app, $parameters = []) {
-            if (!isset($parameters['table_name'])) {
+            if (! isset($parameters['table_name'])) {
                 throw new \Exception('please provide table_name parameter');
             }
 
@@ -34,5 +34,4 @@ class LaravelDynamicModelServiceProvider extends PackageServiceProvider
                 ->create(DynamicModel::class, $parameters['table_name']);
         });
     }
-
 }

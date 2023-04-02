@@ -3,8 +3,8 @@
 namespace LaracraftTech\LaravelDynamicModel\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use LaracraftTech\LaravelDynamicModel\LaravelDynamicModelServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

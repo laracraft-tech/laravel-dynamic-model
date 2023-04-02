@@ -8,6 +8,6 @@ class MyExtendedDynamicModel extends DynamicModel
 {
     public function doSomething()
     {
-        return "foo";
+        return 'foo';
     }
 }
