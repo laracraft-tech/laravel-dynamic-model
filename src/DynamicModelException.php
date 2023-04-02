@@ -4,7 +4,7 @@ namespace LaracraftTech\LaravelDynamicModel;
 
 use InvalidArgumentException;
 
-class DynamicModelException extends InvalidArgumentException
+final class DynamicModelException extends InvalidArgumentException
 {
     public static function tableDoesNotExist(string $tableName): static
     {

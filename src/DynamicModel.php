@@ -12,8 +12,6 @@ class DynamicModel extends Model implements DynamicModelInterface
      * The standard DynamicModel is not guarded,
      * feel free to create your own dynamic model by using the BindsDynamically trait
      * and implementing the DynamicModelInterface!
-     *
-     * @var array
      */
     protected $guarded = [];
 }
