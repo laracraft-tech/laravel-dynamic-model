@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v2.0.1 - 2023-04-03
+
+### Added
+
+- Improved model creating - call `bindyDynamically` in constructor
+
 ## v2.0.0 - 2023-04-02
 
 ### Added:
