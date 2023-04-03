@@ -27,24 +27,24 @@ trait DynamicModelBinding
             $this->setConnection(self::$dynamicDBConnection);
         }
 
-        if (! Schema::hasTable(self::$dynamicTableName)) {
-            throw DynamicModelException::tableDoesNotExist(self::$dynamicTableName);
-        }
-
         // set the table for the dynamic model
         $this->setTable(self::$dynamicTableName);
+
+        if (! Schema::hasTable($this->table)) {
+            throw DynamicModelException::tableDoesNotExist($this->table);
+        }
 
         // apply primary key, incrementing and key type
         $connection = Schema::getConnection();
 
-        $table = $connection->getDoctrineSchemaManager()->listTableDetails(self::$dynamicTableName);
+        $table = $connection->getDoctrineSchemaManager()->listTableDetails($this->table);
 
         if (! $primaryKey = $table->getPrimaryKey()) {
             throw DynamicModelException::primaryKeyDoesNotExist();
         }
 
         $primaryKeyName = $primaryKey->getColumns()[0];
-        $primaryColumn = $connection->getDoctrineColumn(self::$dynamicTableName, $primaryKeyName);
+        $primaryColumn = $connection->getDoctrineColumn($this->table, $primaryKeyName);
 
         $this->primaryKey = $primaryColumn->getName();
         $this->incrementing = $primaryColumn->getAutoincrement();
