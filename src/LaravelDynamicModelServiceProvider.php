@@ -31,7 +31,11 @@ class LaravelDynamicModelServiceProvider extends PackageServiceProvider
             }
 
             return app(DynamicModelFactory::class)
-                ->create(DynamicModel::class, $parameters['table_name']);
+                ->create(
+                    DynamicModel::class,
+                    $parameters['table_name'],
+                    $parameters['db_connection'] ?? null
+                );
         });
     }
 }

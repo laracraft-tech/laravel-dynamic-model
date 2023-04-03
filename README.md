@@ -113,7 +113,8 @@ you can just create your own Eloquent model and **extend** it by the **DynamicMo
 or if the model is already extended by another model, you can just use the **DynamicModelBinding** trait.
 
 If you use the trait, make sure your model implements the **DynamicModelInterface**.
-Also make sure to resolve these models through the **DynamicModelFactory**!
+Also make sure to resolve these models through the **DynamicModelFactory** and
+call the `bindDynamically` function in the `__constructor`!
 
 ``` php
 namespace App\Models;
@@ -133,10 +134,20 @@ class MyDynamicModel extends DynamicModel
     }
 }
 
-# option 2: use the trait
+# option 2: use the trait when class already extends a class
 class MyDynamicModel extends SomeBaseModel implements DynamicModelInterface
 {
     use DynamicModelBinding;
+
+    protected $guarded = [];
+
+    // !!important!! call the parent constructor and bindDynamically function in the constructor!
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->bindDynamically();
+    }
 
     public function doSomething()
     {

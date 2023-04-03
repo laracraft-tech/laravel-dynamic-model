@@ -12,16 +12,16 @@ class DynamicModelFactory
      */
     public function create(string $concreteClassName, string $tableName, string $dbConnection = null): Model&DynamicModelInterface
     {
-        $dynamicModel = new $concreteClassName();
-
-        // tell the IDE which type $dynamicModel should be...
-        /** @var $dynamicModel Model&DynamicModelInterface */
-        if (! method_exists($dynamicModel, 'bindDynamically')) {
+        /** @var $concreteClassName Model&DynamicModelInterface */
+        if (! method_exists($concreteClassName, 'bindDynamically')) {
             throw DynamicModelException::bindFuncDoesNotExist($concreteClassName);
         }
 
-        $dynamicModel->bindDynamically($tableName, $dbConnection);
+        $concreteClassName::setDynamicTableName($tableName);
+        if ($dbConnection) {
+            $concreteClassName::setDynamicDBConnection($dbConnection);
+        }
 
-        return $dynamicModel;
+        return new $concreteClassName();
     }
 }
