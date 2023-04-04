@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v2.1.0 - 2023-04-04
+
+### Changed
+
+- removed factory, made container binding work
+
 ## v2.0.1 - 2023-04-03
 
 ### Added
