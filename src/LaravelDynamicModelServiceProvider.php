@@ -8,6 +8,8 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelDynamicModelServiceProvider extends PackageServiceProvider
 {
+    protected array $boundClassesWithParams = [];
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -21,21 +23,30 @@ class LaravelDynamicModelServiceProvider extends PackageServiceProvider
     /**
      * @throws InvalidPackage
      */
-    public function register()
+    public function packageRegistered(): void
     {
-        parent::register();
-
-        $this->app->bind(DynamicModel::class, function ($app, $parameters = []) {
-            if (! isset($parameters['table_name'])) {
-                throw new \Exception('please provide table_name parameter');
+        $this->app->beforeResolving(DynamicModelInterface::class, function ($class, $parameters, $app) {
+            // if empty param do nothing before resolving,
+            // just try to resolve already bound class...
+            if (empty($parameters)) {
+                return;
             }
 
-            return app(DynamicModelFactory::class)
-                ->create(
-                    DynamicModel::class,
-                    $parameters['table_name'],
-                    $parameters['db_connection'] ?? null
-                );
+            $paramHash = hash('sha256', json_encode($parameters));
+
+            // if the class is already bound with the same parameters
+            // just try to resolve already bound class...
+            if ($app->has($class) && $this->boundClassesWithParams[$class] === $paramHash) {
+                return;
+            }
+
+            $app->bind($class, function ($container) use ($class, $parameters, $paramHash) {
+                $instance = new $class;
+                $instance->bindDynamically(...$parameters);
+                $this->boundClassesWithParams[$class] = $paramHash;
+
+                return $instance;
+            });
         });
     }
 }

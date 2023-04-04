@@ -6,29 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 trait DynamicModelBinding
 {
-    private static string $dynamicTableName;
-
-    private static ?string $dynamicDBConnection = null;
-
-    public static function setDynamicTableName(string $tableName): void
+    public function bindDynamically(string $tableName, string $dbConnection = null): void
     {
-        self::$dynamicTableName = $tableName;
-    }
-
-    public static function setDynamicDBConnection(string $dbConnection): void
-    {
-        self::$dynamicDBConnection = $dbConnection;
-    }
-
-    public function bindDynamically(): void
-    {
-        // change connection, if desired
-        if (self::$dynamicDBConnection) {
-            $this->setConnection(self::$dynamicDBConnection);
+        // first change connection, if desired
+        if ($dbConnection) {
+            $this->setConnection($dbConnection);
         }
 
         // set the table for the dynamic model
-        $this->setTable(self::$dynamicTableName);
+        $this->setTable($tableName);
 
         if (! Schema::hasTable($this->table)) {
             throw DynamicModelException::tableDoesNotExist($this->table);

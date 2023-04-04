@@ -67,24 +67,24 @@ If you do not like this, check the section below and create your own dynamic mod
 ``` php
 use LaracraftTech\LaravelDynamicModel\DynamicModel;
 
-$foo = App::make(DynamicModel::class, ['table_name' => 'foo']);
+$foo = App::make(DynamicModel::class, ['foo']);
 
 $foo->create([
     'col1' => 'asdf',
     'col2' => 123
 ]);
 
-$faz = App::make(DynamicModel::class, ['table_name' => 'faz']);
+$faz = App::make(DynamicModel::class, ['faz']);
 $faz->create([...]);
 
-$bar = App::make(DynamicModel::class, ['table_name' => 'bar']);
+$bar = App::make(DynamicModel::class, ['bar']);
 $bar->create([...]);
 
-$baz = App::make(DynamicModel::class, ['table_name' => 'baz']);
+$baz = App::make(DynamicModel::class, ['baz']);
 $baz->create([...]);
 
 // use another db connection (this one must be defined in your config/database.php file)
-$fooOtherDB = App::make(DynamicModel::class, ['table_name' => 'baz', 'db_connection' => 'your-db-connection-name-here']);
+$fooOtherDB = App::make(DynamicModel::class, ['baz', 'your-optional-db-connection-name-here']);
 $fooOtherDB->create([...]);
 
 dd($foo->first());
@@ -113,15 +113,13 @@ you can just create your own Eloquent model and **extend** it by the **DynamicMo
 or if the model is already extended by another model, you can just use the **DynamicModelBinding** trait.
 
 If you use the trait, make sure your model implements the **DynamicModelInterface**.
-Also make sure to resolve these models through the **DynamicModelFactory** and
-call the `bindDynamically` function in the `__constructor`!
+Also make sure to always resolve these models through the container!
 
 ``` php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaracraftTech\LaravelDynamicModel\DynamicModel;
-use LaracraftTech\LaravelDynamicModel\DynamicModelFactory;
 use LaracraftTech\LaravelDynamicModel\DynamicModelBinding;
 use LaracraftTech\LaravelDynamicModel\DynamicModelInterface;
 
@@ -141,22 +139,13 @@ class MyDynamicModel extends SomeBaseModel implements DynamicModelInterface
 
     protected $guarded = [];
 
-    // !!important!! call the parent constructor and bindDynamically function in the constructor!
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->bindDynamically();
-    }
-
     public function doSomething()
     {
         // do something
     }
 }
 
-$foo = app(DynamicModelFactory::class)
-        ->create(MyDynamicModel::class, 'foo', 'optional-other-db-connection-name')
+$foo = app(MyDynamicModel::class, 'foo');
 
 $foo->create([
     'col1' => 'asdf',

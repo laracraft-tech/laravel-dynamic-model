@@ -3,7 +3,6 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use LaracraftTech\LaravelDynamicModel\DynamicModel;
-use LaracraftTech\LaravelDynamicModel\DynamicModelFactory;
 use LaracraftTech\LaravelDynamicModel\Tests\MyExtendedDynamicModel;
 use LaracraftTech\LaravelDynamicModel\Tests\MyTraitedDynamicModel;
 
@@ -25,7 +24,7 @@ beforeEach(function () {
 
 it('can use different tables', function () {
     // foo
-    $foo = App::make(DynamicModel::class, ['table_name' => 'foo']);
+    $foo = App::make(DynamicModel::class, ['foo']);
 
     $foo->create([
         'col1' => 'asdf',
@@ -37,7 +36,7 @@ it('can use different tables', function () {
         ->col2->toBe(123);
 
     // bar
-    $bar = App::make(DynamicModel::class, ['table_name' => 'bar']);
+    $bar = App::make(DynamicModel::class, ['bar']);
 
     $bar->create([
         'col1' => 'fdsa',
@@ -49,8 +48,39 @@ it('can use different tables', function () {
         ->col2->toBe(321);
 });
 
+it('can reuse already bound variables', function () {
+    // foo
+    $foo = App::make(DynamicModel::class, ['foo']);
+
+    $foo->create([
+        'col1' => 'asdf',
+        'col2' => 123,
+    ]);
+
+    expect($foo->find(1))
+        ->col1->toBe('asdf')
+        ->col2->toBe(123);
+
+    // bar
+    $bar = App::make(DynamicModel::class, ['bar']);
+
+    $bar->create([
+        'col1' => 'fdsa',
+        'col2' => 321,
+    ]);
+
+    expect($bar->find(1))
+        ->col1->toBe('fdsa')
+        ->col2->toBe(321);
+
+    //retry foo
+    expect($foo->find(1))
+        ->col1->toBe('asdf')
+        ->col2->toBe(123);
+});
+
 it('can use extended dynamic model', function () {
-    $myDynamicModel = App::make(DynamicModelFactory::class)->create(MyExtendedDynamicModel::class, 'foo');
+    $myDynamicModel = App::make(MyExtendedDynamicModel::class, ['foo']);
 
     $myDynamicModel->create([
         'col1' => 'asdf',
@@ -64,7 +94,7 @@ it('can use extended dynamic model', function () {
 });
 
 it('can use traited dynamic model', function () {
-    $myDynamicModel = App::make(DynamicModelFactory::class)->create(MyTraitedDynamicModel::class, 'foo');
+    $myDynamicModel = App::make(MyTraitedDynamicModel::class, ['foo']);
 
     $myDynamicModel->create([
         'col1' => 'asdf',

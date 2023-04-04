@@ -14,11 +14,4 @@ class DynamicModel extends Model implements DynamicModelInterface
      * and implementing the DynamicModelInterface!
      */
     protected $guarded = [];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->bindDynamically();
-    }
 }
