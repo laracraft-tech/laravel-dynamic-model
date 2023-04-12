@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Schema;
 use LaracraftTech\LaravelDynamicModel\DynamicModel;
 use LaracraftTech\LaravelDynamicModel\DynamicModelFactory;
 use LaracraftTech\LaravelDynamicModel\Tests\MyExtendedDynamicModel;
-use LaracraftTech\LaravelDynamicModel\Tests\MyTraitedDynamicModel;
 
 beforeEach(function () {
     Schema::create('foo', function (Blueprint $table) {

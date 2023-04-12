@@ -11,13 +11,10 @@ use ReflectionException;
 class DynamicModelFactory
 {
     private string $dynamicTableName;
+
     private string $dynamicConnectionName;
 
     /**
-     * @param string $fqnClass
-     * @param string $dynamicTableName
-     * @param string|null $dynamicConnectionName
-     * @return Model&DynamicModelInterface
      * @throws ReflectionException
      */
     public function create(string $fqnClass, string $dynamicTableName, string $dynamicConnectionName = null): Model&DynamicModelInterface
@@ -31,21 +28,17 @@ class DynamicModelFactory
             return app($dynamicFQNClass);
         }
 
-        if (!class_exists($dynamicFQNClass)) {
+        if (! class_exists($dynamicFQNClass)) {
             $this->createDynamicClass($fqnClass);
         }
 
-        app()->bind($dynamicFQNClass, function() use ($dynamicFQNClass) {
+        app()->bind($dynamicFQNClass, function () use ($dynamicFQNClass) {
             return new $dynamicFQNClass();
         });
 
         return app($dynamicFQNClass);
     }
 
-    /**
-     * @param string $class
-     * @return string
-     */
     private function getDynamicClass(string $class): string
     {
         return "{$class}_{$this->dynamicConnectionName}_{$this->dynamicTableName}";
@@ -53,7 +46,7 @@ class DynamicModelFactory
 
     private function getDynamicTableValues(): array
     {
-        if (!isset(config('database.connections')[$this->dynamicConnectionName])) {
+        if (! isset(config('database.connections')[$this->dynamicConnectionName])) {
             throw DynamicModelException::connectionDoesNotExist($this->dynamicConnectionName);
         }
 
@@ -87,7 +80,7 @@ class DynamicModelFactory
         return [
             'primaryKey' => $primaryColumn->getName(),
             'keyType' => Str::of($primaryColumn->getType()->getName())->contains('int') ? 'int' : 'string',
-            'incrementing' => $primaryColumn->getAutoincrement() ? 'true' : 'false' ,
+            'incrementing' => $primaryColumn->getAutoincrement() ? 'true' : 'false',
         ];
     }
 
