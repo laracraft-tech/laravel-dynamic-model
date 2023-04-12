@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use ReflectionClass;
+use ReflectionException;
 
 class DynamicModelFactory
 {
@@ -17,6 +18,7 @@ class DynamicModelFactory
      * @param string $dynamicTableName
      * @param string|null $dynamicConnectionName
      * @return Model&DynamicModelInterface
+     * @throws ReflectionException
      */
     public function create(string $fqnClass, string $dynamicTableName, string $dynamicConnectionName = null): Model&DynamicModelInterface
     {
@@ -25,9 +27,19 @@ class DynamicModelFactory
 
         $dynamicFQNClass = $this->getDynamicClass($fqnClass);
 
-        $this->createDynamicClass($fqnClass);
+        if (app()->has($dynamicFQNClass)) {
+            return app($dynamicFQNClass);
+        }
 
-        return new $dynamicFQNClass();
+        if (!class_exists($dynamicFQNClass)) {
+            $this->createDynamicClass($fqnClass);
+        }
+
+        app()->bind($dynamicFQNClass, function() use ($dynamicFQNClass) {
+            return new $dynamicFQNClass();
+        });
+
+        return app($dynamicFQNClass);
     }
 
     /**
@@ -79,6 +91,9 @@ class DynamicModelFactory
         ];
     }
 
+    /**
+     * @throws ReflectionException
+     */
     private function createDynamicClass(string $fqnClass)
     {
         $dynamicTableValues = $this->getDynamicTableValues();
