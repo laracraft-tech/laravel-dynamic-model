@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v3.0.1 - 2023-04-14
+
+### Fixed
+
+- connection issue on different db connection
+
 ## v3.0.0 - 2023-04-13
 
 ### Added
