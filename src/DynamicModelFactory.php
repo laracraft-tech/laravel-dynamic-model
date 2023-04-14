@@ -2,6 +2,7 @@
 
 namespace LaracraftTech\LaravelDynamicModel;
 
+use Doctrine\DBAL\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -44,6 +45,9 @@ class DynamicModelFactory
         return "{$class}_{$this->dynamicConnectionName}_{$this->dynamicTableName}";
     }
 
+    /**
+     * @throws Exception
+     */
     private function getDynamicTableValues(): array
     {
         if (! isset(config('database.connections')[$this->dynamicConnectionName])) {
@@ -61,7 +65,7 @@ class DynamicModelFactory
             throw DynamicModelException::tableDoesNotExist($this->dynamicTableName);
         }
 
-        $table = $connection->getDoctrineSchemaManager()->listTableDetails($this->dynamicTableName);
+        $table = $connection->getDoctrineSchemaManager()->introspectTable($this->dynamicTableName);
 
         if (! $primaryKey = $table->getPrimaryKey()) {
             throw DynamicModelException::primaryKeyDoesNotExist();
