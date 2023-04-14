@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v3.0.3 - 2023-04-14
+
+### Improvement
+
+- replaced deprecated doctrine function call 2.0
+
 ## v3.0.2 - 2023-04-14
 
 ### Improvement
