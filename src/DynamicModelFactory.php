@@ -52,16 +52,14 @@ class DynamicModelFactory
 
         $currentDBConnection = Schema::getConnection()->getName();
 
+        $connection = Schema::getConnection();
         if ($currentDBConnection !== $this->dynamicConnectionName) {
-            Schema::connection($this->dynamicConnectionName);
+            $connection = Schema::connection($this->dynamicConnectionName)->getConnection();
         }
 
-        if (! Schema::hasTable($this->dynamicTableName)) {
+        if (! $connection->getSchemaBuilder()->hasTable($this->dynamicTableName)) {
             throw DynamicModelException::tableDoesNotExist($this->dynamicTableName);
         }
-
-        // get primary key, incrementing and key type
-        $connection = Schema::getConnection();
 
         $table = $connection->getDoctrineSchemaManager()->listTableDetails($this->dynamicTableName);
 
