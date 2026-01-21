@@ -18,7 +18,7 @@ class DynamicModelFactory
     /**
      * @throws ReflectionException
      */
-    public function create(string $fqnClass, string $dynamicTableName, string $dynamicConnectionName = null): Model&DynamicModelInterface
+    public function create(string $fqnClass, string $dynamicTableName, string|null $dynamicConnectionName = null): Model&DynamicModelInterface
     {
         $this->dynamicTableName = $dynamicTableName;
         $this->dynamicConnectionName = $dynamicConnectionName ?? config('database.default');
