@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
     strategy:
       fail-fast: true
       matrix:
@@ -26,6 +27,13 @@ jobs:
           - laravel: 8.*
             testbench: 6.27
             carbon: ^2.63
+        exclude:
+          - laravel: 10.*
+            stability: prefer-lowest
+          - laravel: 8.*
+            php: 8.3
+          - laravel: 8.*
+            php: 8.2
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -54,4 +62,4 @@ jobs:
         run: composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest --ci
