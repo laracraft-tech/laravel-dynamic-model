@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v3.0.4 - 2026-02-06
+
+### What's Changed
+
+* Fix PHP 8.1 deprecation warning in DynamicModelFactory::create() by @Skop-22 in https://github.com/laracraft-tech/laravel-dynamic-model/pull/33
+
+### New Contributors
+
+* @Skop-22 made their first contribution in https://github.com/laracraft-tech/laravel-dynamic-model/pull/33
+
+**Full Changelog**: https://github.com/laracraft-tech/laravel-dynamic-model/compare/v3.0.3...v3.0.4
+
 ## v3.0.3 - 2023-04-14
 
 ### Improvement
