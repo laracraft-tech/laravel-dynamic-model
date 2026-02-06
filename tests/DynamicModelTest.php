@@ -15,7 +15,7 @@ beforeEach(function () {
     });
 
     Schema::create('bar', function (Blueprint $table) {
-//        $table->id();
+        //        $table->id();
         $table->date('period')->primary();
         $table->string('col1');
         $table->integer('col2');
@@ -81,7 +81,7 @@ it('can reuse already bound variables', function () {
         ->col1->toBe('asdf')
         ->col2->toBe(123);
 
-    //retry foo
+    // retry foo
 });
 
 it('can use extended dynamic model', function () {
