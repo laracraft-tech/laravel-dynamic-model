@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-dynamic-model` will be documented in this file.
 
+## v4.0.0 - 2026-04-01
+
+### What's Changed
+
+* laravel 13 support
+* Bump ramsey/composer-install from 3 to 4 by @dependabot[bot] in https://github.com/laracraft-tech/laravel-dynamic-model/pull/34
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/laracraft-tech/laravel-dynamic-model/pull/35
+
+**Full Changelog**: https://github.com/laracraft-tech/laravel-dynamic-model/compare/v3.0.4...v4.0.0
+
 ## v3.0.4 - 2026-02-06
 
 ### What's Changed
