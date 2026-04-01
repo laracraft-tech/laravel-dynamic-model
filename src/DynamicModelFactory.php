@@ -2,7 +2,6 @@
 
 namespace LaracraftTech\LaravelDynamicModel;
 
-use Doctrine\DBAL\Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -45,44 +44,45 @@ class DynamicModelFactory
         return "{$class}_{$this->dynamicConnectionName}_{$this->dynamicTableName}";
     }
 
-    /**
-     * @throws Exception
-     */
     private function getDynamicTableValues(): array
     {
         if (! isset(config('database.connections')[$this->dynamicConnectionName])) {
             throw DynamicModelException::connectionDoesNotExist($this->dynamicConnectionName);
         }
 
-        $currentDBConnection = Schema::getConnection()->getName();
+        $schema = Schema::connection($this->dynamicConnectionName);
 
-        $connection = Schema::getConnection();
-        if ($currentDBConnection !== $this->dynamicConnectionName) {
-            $connection = Schema::connection($this->dynamicConnectionName)->getConnection();
-        }
-
-        if (! $connection->getSchemaBuilder()->hasTable($this->dynamicTableName)) {
+        if (! $schema->hasTable($this->dynamicTableName)) {
             throw DynamicModelException::tableDoesNotExist($this->dynamicTableName);
         }
 
-        $table = $connection->getDoctrineSchemaManager()->introspectTable($this->dynamicTableName);
+        $indexes = $schema->getIndexes($this->dynamicTableName);
 
-        if (! $primaryKey = $table->getPrimaryKey()) {
+        $primaryKeyName = null;
+        foreach ($indexes as $index) {
+            if ($index['primary']) {
+                $primaryKeyName = $index['columns'][0];
+                break;
+            }
+        }
+
+        if (! $primaryKeyName) {
             throw DynamicModelException::primaryKeyDoesNotExist();
         }
 
-        $primaryKeyName = $primaryKey->getColumns()[0];
-        $primaryColumn = $connection->getDoctrineColumn($this->dynamicTableName, $primaryKeyName);
-
-        // reset to old connection
-        if ($currentDBConnection !== $this->dynamicConnectionName) {
-            Schema::connection($currentDBConnection);
+        $columns = $schema->getColumns($this->dynamicTableName);
+        $primaryColumn = null;
+        foreach ($columns as $column) {
+            if ($column['name'] === $primaryKeyName) {
+                $primaryColumn = $column;
+                break;
+            }
         }
 
         return [
-            'primaryKey' => $primaryColumn->getName(),
-            'keyType' => Str::of($primaryColumn->getType()->getName())->contains('int') ? 'int' : 'string',
-            'incrementing' => $primaryColumn->getAutoincrement() ? 'true' : 'false',
+            'primaryKey' => $primaryColumn['name'],
+            'keyType' => Str::of($primaryColumn['type_name'])->contains('int') ? 'int' : 'string',
+            'incrementing' => $primaryColumn['auto_increment'] ? 'true' : 'false',
         ];
     }
 
