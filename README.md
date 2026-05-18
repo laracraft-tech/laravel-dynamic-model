@@ -4,8 +4,8 @@
 [![Tests](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/run-tests.yml)
 [![Check & fix styling](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix-php-code-style-issues.yml/badge.svg?branch=main)](https://github.com/laracraft-tech/laravel-dynamic-model/actions/workflows/fix-php-code-style-issues.yml)
 [![License](https://img.shields.io/packagist/l/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)
-<!--[![Total Downloads](https://img.shields.io/packagist/dt/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)-->
 [![Laravel Compatibility](https://badge.laravel.cloud/badge/laracraft-tech/laravel-dynamic-model)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)
+<!--[![Total Downloads](https://img.shields.io/packagist/dt/laracraft-tech/laravel-dynamic-model.svg?style=flat-square)](https://packagist.org/packages/laracraft-tech/laravel-dynamic-model)-->
 
 
 Normally, each model in Laravel is written for only one table, and it's not so easy to break this convention.
